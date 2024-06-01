@@ -1,11 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { urlFor } from "../sanity";
+import { PageInfo } from "../typings"; 
+
 type Props = {
   pageInfo: PageInfo;
 };
 
-function About({pageInfo}: Props) {
+function About({ pageInfo }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -42,7 +44,6 @@ function About({pageInfo}: Props) {
           background
         </h4>
         <p className="text-base">{pageInfo?.backgroundInformation}</p>
-       
       </div>
     </motion.div>
   );

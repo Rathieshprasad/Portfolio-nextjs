@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { urlFor } from "../sanity";
+import { Skill as skillType } from "../typings";
 type Props = {
-  skills: Skill;
+  skill: skillType;
   directionLeft?: boolean;
 };
 

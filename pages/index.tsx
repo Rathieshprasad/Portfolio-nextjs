@@ -23,7 +23,8 @@ type Props = {
   projects: Project[];
   socials: Social[];
 };
-const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
+
+const Home: NextPage<Props> = ({ pageInfo, experiences, projects, skills, socials }) => {
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll z-0 overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
       <Head>
@@ -52,23 +53,30 @@ const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
   );
 };
 
-export default Home;
-
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const pageInfo = await fetchPageInfo();
-  const experiences = await fetchExperiences();
-  const skills = await fetchSkills();
-  const projects = await fetchProjects();
-  const socials = await fetchSocials();
+  try {
+    const pageInfo = await fetchPageInfo();
+    const experiences = await fetchExperiences();
+    const skills = await fetchSkills();
+    const projects = await fetchProjects();
+    const socials = await fetchSocials();
 
-  return {
-    props: {
-      pageInfo,
-      experiences,
-      skills,
-      projects,
-      socials,
-    },
-    revalidate: 10,
-  };
+    return {
+      props: {
+        pageInfo,
+        experiences,
+        skills,
+        projects,
+        socials,
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      notFound: true,
+    };
+  }
 };
+
+export default Home;

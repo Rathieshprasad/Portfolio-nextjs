@@ -4,6 +4,7 @@ import BackgroundCircles from "./BackgroundCircles";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "../sanity";
+import { PageInfo } from "../typings";
 
 type Props = {
   pageInfo: PageInfo;
