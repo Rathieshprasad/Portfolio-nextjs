@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-type Props = {};
+import { urlFor } from "../sanity";
+type Props = {
+  pageInfo: PageInfo;
+};
 
-function About({}: Props) {
+function About({pageInfo}: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,7 +31,7 @@ function About({}: Props) {
         }}
         viewport={{ once: true }}
         className="-mb-20 mt-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[400px] xl:h-[500px]"
-        src="https://editors.dexerto.com/wp-content/uploads/2024/04/08/one-piece-luffy-gear-5.jpeg"
+        src={urlFor(pageInfo?.profilePic).url()}
         alt=""
       />
 
@@ -38,6 +41,7 @@ function About({}: Props) {
           <span className="underline decoration-[#F7AB0A]/50">little</span>{" "}
           background
         </h4>
+        <p className="text-base">{pageInfo?.backgroundInformation}</p>
        
       </div>
     </motion.div>
